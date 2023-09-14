@@ -22,3 +22,11 @@ export function pointlessLoop() {
         // On second thought, let's not loop here. Tis a silly place.
     }
 }
+
+/**
+ * A function that does nothing, but is a bit more verbose about it.
+ * @deprecated
+ */
+export function doNothingVerbose() {
+    // Deep thoughts and contemplation.
+}

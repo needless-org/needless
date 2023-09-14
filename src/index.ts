@@ -30,3 +30,11 @@ export function pointlessLoop() {
 export function doNothingVerbose() {
     // Deep thoughts and contemplation.
 }
+
+/**
+ * A function that comments on the fact that it does nothing.
+ * 
+ */
+export function doNothingCommented() {
+    console.log("I'm doing nothing!");
+}

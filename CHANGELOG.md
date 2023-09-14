@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.7
+
+### Patch Changes
+
+- d7773bf: add missing id to workflow
+
 ## 6.7.6
 
 ### Patch Changes

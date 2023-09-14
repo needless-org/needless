@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.9
+
+### Patch Changes
+
+- 175b492: make package public
+
 ## 6.7.8
 
 ### Patch Changes

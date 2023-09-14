@@ -125,7 +125,8 @@ jobs:
       - name: Prepare registry
         run: |
           rm -f .npmrc
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          echo "@needless-org:registry=https://registry.npmjs.org/" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
 
       - name: Publish to NPM
         run: npm publish --access public
@@ -166,7 +167,7 @@ jobs:
       - name: Prepare registry
         run: |
           rm -f .npmrc
-          echo //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN} >> .npmrc
+          echo //npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}} >> .npmrc
           echo @needless-org:registry=https://npm.pkg.github.com/needless-org >> .npmrc
         
       - name: Publish to GitHub

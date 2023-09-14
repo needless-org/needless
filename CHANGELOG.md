@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.6
+
+### Patch Changes
+
+- 2b67477: add debug comments
+
 ## 6.7.5
 
 ### Patch Changes

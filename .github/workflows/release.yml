@@ -47,7 +47,7 @@ jobs:
 
       - name: Generate outputs
         id: releaseOutputs
-        if: steps.changesets.outputs.published == 'false'
+        if: steps.changesets.outputs.published == 'true'
         run: echo "releaseReady=true" >> $GITHUB_OUTPUT
 
   prepare:

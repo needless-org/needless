@@ -1,5 +1,12 @@
 # @useless/needless-js
 
+## 6.7.1
+
+### Patch Changes
+
+- b5bc87a: rewrite workflow
+- c2cab63: Updated outputs in workflow
+
 ## 6.7.0
 
 ### Minor Changes

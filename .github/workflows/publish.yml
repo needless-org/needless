@@ -1,11 +1,7 @@
 name: Publish
 
 on:
-  release:
-    types: [published]
   push:
-    branches:
-      - release
     tags:
       - v*
 
@@ -41,13 +37,13 @@ jobs:
         run: pnpm build
 
       - name: Pack artifact
-        run:  tar -czf artifacts/artifact.tar.gz --exclude=./artifacts .
+        run:  tar -czf /tmp/artifact.tar.gz .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: package-artifact
-          path: ./artifacts/artifact.tar.gz
+          path: /tmp/artifact.tar.gz
           retention-days: 1
   
   publish-npm:
@@ -75,7 +71,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: frontend-artifact
+          name: package-artifact
 
       - name: Unpack artifact
         run: tar xf artifact.tar.gz
@@ -124,3 +120,23 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
+       - name: Pack artifact
+              run: tar czf /tmp/artifact.tar.gz .
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: frontend-artifact
+                  path: /tmp/artifact.tar.gz
+                  retention-days: 1
+
+
+
+    steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v2
+              with:
+                  name: frontend-artifact
+
+            - name: Unpack artifact
+              run: tar xf artifact.tar.gz

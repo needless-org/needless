@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.12
+
+### Patch Changes
+
+- 7407f53: fix config for github
+
 ## 6.7.11
 
 ### Patch Changes

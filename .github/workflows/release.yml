@@ -147,6 +147,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
+          scope: '@needless-org'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -163,12 +164,6 @@ jobs:
       - name: Unpack artifact
         run: tar xf artifact.tar.gz
 
-      - name: Prepare registry
-        run: |
-          rm -f .npmrc
-          echo //npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}} >> .npmrc
-          echo @needless-org:registry=https://npm.pkg.github.com >> .npmrc
-        
       - name: Publish to GitHub
         run: npm publish
         env:

@@ -3,6 +3,11 @@ name: Publish
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - release
+    tags:
+      - v*
 
 jobs:
   prepare:

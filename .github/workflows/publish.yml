@@ -119,24 +119,3 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      
-       - name: Pack artifact
-              run: tar czf /tmp/artifact.tar.gz .
-
-            - name: Upload artifact
-              uses: actions/upload-artifact@v2
-              with:
-                  name: frontend-artifact
-                  path: /tmp/artifact.tar.gz
-                  retention-days: 1
-
-
-
-    steps:
-            - name: Download artifact
-              uses: actions/download-artifact@v2
-              with:
-                  name: frontend-artifact
-
-            - name: Unpack artifact
-              run: tar xf artifact.tar.gz

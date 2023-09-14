@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.6.12
+
+### Patch Changes
+
+- 3b0a82a: add another trigger for publishing
+
 ## 6.6.11
 
 ### Patch Changes

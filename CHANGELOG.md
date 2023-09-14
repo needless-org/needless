@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.13
+
+### Patch Changes
+
+- 2caebf1: update workflow
+
 ## 6.7.12
 
 ### Patch Changes

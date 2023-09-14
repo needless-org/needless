@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.6.9
+
+### Patch Changes
+
+- 43b513b: Something has done
+
 ## 6.6.8
 
 ### Patch Changes

@@ -1,5 +1,5 @@
 ---
-"@needless-org/needless-js": patch
+"@needless-org/needless-js": minor
 ---
 
 one more attempt to publish automaticly

@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - id: releaseOutputs
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.changesets.outputs.hasChangesets == 'false'
         name: Generate outputs
         run: echo "releaseReady=true" >> $GITHUB_OUTPUT
 

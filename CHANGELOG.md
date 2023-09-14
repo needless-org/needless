@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.10
+
+### Patch Changes
+
+- b617f35: update publish workflow
+
 ## 6.7.9
 
 ### Patch Changes

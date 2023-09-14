@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.4
+
+### Patch Changes
+
+- 4c629a9: test workflow
+
 ## 6.7.3
 
 ### Patch Changes

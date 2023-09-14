@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.2
+
+### Patch Changes
+
+- eb9293e: edit changesets output generation
+
 ## 6.7.1
 
 ### Patch Changes

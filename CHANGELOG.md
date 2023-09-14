@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.6.10
+
+### Patch Changes
+
+- f2d9609: add something for publishing
+
 ## 6.6.9
 
 ### Patch Changes

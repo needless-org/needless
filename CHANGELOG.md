@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.14
+
+### Patch Changes
+
+- 406db3b: changed gh workflow
+
 ## 6.7.13
 
 ### Patch Changes

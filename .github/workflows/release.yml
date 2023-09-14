@@ -36,5 +36,10 @@ jobs:
 
       - name: Create Release
         uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          title: "ci(changesets): :package: version packages"
+          commit: "ci(changesets): version packages"
+          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

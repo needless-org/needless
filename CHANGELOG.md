@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.6.11
+
+### Patch Changes
+
+- 2258ecc: remove trash
+
 ## 6.6.10
 
 ### Patch Changes

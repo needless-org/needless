@@ -52,8 +52,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - id: releaseOutputs
+        if: steps.changesets.outputs.published == 'true'
         name: Generate outputs
-        run: echo "releaseReady=${{ steps.changesets.outputs.published }}" >> $GITHUB_OUTPUT
+        run: echo "releaseReady=true" >> $GITHUB_OUTPUT
 
   prepare:
     name: Prepare packages

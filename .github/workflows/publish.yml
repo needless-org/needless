@@ -1,124 +1,124 @@
-name: Publish
+# name: Publish
 
-on:
-  release:
-    types: [published]
-  # workflow_run:
-  #   workflows: [Release]
-  #   types: [completed]
-  #   branches: [release]
+# on:
+#   release:
+#     types: [published]
+#   # workflow_run:
+#   #   workflows: [Release]
+#   #   types: [completed]
+#   #   branches: [release]
 
-jobs:
-  prepare:
-    name: Prepare packages
-    runs-on: ubuntu-latest
-    continue-on-error: false
-    steps:
-      - name: Cancel previous jobs
-        uses: styfle/cancel-workflow-action@0.11.0
+# jobs:
+#   prepare:
+#     name: Prepare packages
+#     runs-on: ubuntu-latest
+#     continue-on-error: false
+#     steps:
+#       - name: Cancel previous jobs
+#         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: Checkout
-        uses: actions/checkout@v3
+#       - name: Checkout
+#         uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
+#       - name: Install pnpm
+#         uses: pnpm/action-setup@v2
+#         id: pnpm-install
+#         with:
+#           version: 8
+#           run_install: false
 
-      - name: Setup Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
+#       - name: Setup Node version
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+#       - name: Install dependencies
+#         run: pnpm install
 
-      - name: Build
-        run: pnpm build
+#       - name: Build
+#         run: pnpm build
 
-      - name: Pack artifact
-        run:  tar -czf /tmp/artifact.tar.gz .
+#       - name: Pack artifact
+#         run:  tar -czf /tmp/artifact.tar.gz .
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: package-artifact
-          path: /tmp/artifact.tar.gz
-          retention-days: 1
+#       - name: Upload artifact
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: package-artifact
+#           path: /tmp/artifact.tar.gz
+#           retention-days: 1
   
-  publish-npm:
-    name: Publish to NPM Registry
-    needs: prepare
-    runs-on: ubuntu-latest
-    continue-on-error: false
-    steps:
-      - name: Cancel previous jobs
-        uses: styfle/cancel-workflow-action@0.11.0
+#   publish-npm:
+#     name: Publish to NPM Registry
+#     needs: prepare
+#     runs-on: ubuntu-latest
+#     continue-on-error: false
+#     steps:
+#       - name: Cancel previous jobs
+#         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: Setup Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+#       - name: Setup Node version
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-          registry-url: https://registry.npmjs.org/
+#       - name: Install pnpm
+#         uses: pnpm/action-setup@v2
+#         id: pnpm-install
+#         with:
+#           version: 8
+#           run_install: false
+#           registry-url: https://registry.npmjs.org/
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: package-artifact
+#       - name: Download artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: package-artifact
 
-      - name: Unpack artifact
-        run: tar xf artifact.tar.gz
+#       - name: Unpack artifact
+#         run: tar xf artifact.tar.gz
 
-      - name: Publish to NPM
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+#       - name: Publish to NPM
+#         run: npm publish --access public
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-  publish-github:
-    name: Publish to Github Registry
-    needs: prepare
-    runs-on: ubuntu-latest
-    continue-on-error: false
-    steps:
-      - name: Cancel previous jobs
-        uses: styfle/cancel-workflow-action@0.11.0
+#   publish-github:
+#     name: Publish to Github Registry
+#     needs: prepare
+#     runs-on: ubuntu-latest
+#     continue-on-error: false
+#     steps:
+#       - name: Cancel previous jobs
+#         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: Setup Node version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+#       - name: Setup Node version
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-          registry-url: https://npm.pkg.github.com/
-          scope: '@needless-org'
+#       - name: Install pnpm
+#         uses: pnpm/action-setup@v2
+#         id: pnpm-install
+#         with:
+#           version: 8
+#           run_install: false
+#           registry-url: https://npm.pkg.github.com/
+#           scope: '@needless-org'
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: package-artifact
+#       - name: Download artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: package-artifact
 
-      - name: Unpack artifact
-        run: tar xf artifact.tar.gz
+#       - name: Unpack artifact
+#         run: tar xf artifact.tar.gz
 
-      - name: Prepare registry
-        run: echo registry=https://npm.pkg.github.com/needless-org >> .npmrc
+#       - name: Prepare registry
+#         run: echo registry=https://npm.pkg.github.com/needless-org >> .npmrc
         
-      - name: Publish to GitHub
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#       - name: Publish to GitHub
+#         run: npm publish --access public
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

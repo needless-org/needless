@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.3
+
+### Patch Changes
+
+- 49a0c11: change condition
+
 ## 6.7.2
 
 ### Patch Changes

@@ -104,7 +104,8 @@ jobs:
       - name: Setup Node version
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -112,7 +113,6 @@ jobs:
         with:
           version: 8
           run_install: false
-          registry-url: https://registry.npmjs.org/
 
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -145,7 +145,8 @@ jobs:
       - name: Setup Node version
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -153,8 +154,6 @@ jobs:
         with:
           version: 8
           run_install: false
-          registry-url: https://npm.pkg.github.com/
-          scope: '@needless-org'
 
       - name: Download artifact
         uses: actions/download-artifact@v3

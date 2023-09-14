@@ -50,6 +50,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Generate outputs
+        run: echo ::set-output name=releaseReady::${{ steps.changesets.outputs.published }}
         outputs:
           releaseReady: ${{ steps.changesets.outputs.published }}
 

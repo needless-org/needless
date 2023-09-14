@@ -1,7 +1,7 @@
 {
   "name": "@needless-org/needless-js",
   "private": true,
-  "version": "6.7.4",
+  "version": "6.7.5",
   "type": "module",
   "main": "src/index.ts",
   "author": "Yaroslav Romanenko <yarikrom05@gmail.com>",

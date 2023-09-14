@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.5
+
+### Patch Changes
+
+- 4e4efec: test build
+
 ## 6.7.4
 
 ### Patch Changes

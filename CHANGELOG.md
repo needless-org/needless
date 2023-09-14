@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.11
+
+### Patch Changes
+
+- 95ed093: one more attempt to release
+
 ## 6.7.10
 
 ### Patch Changes

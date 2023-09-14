@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.8
+
+### Patch Changes
+
+- 7dc00ed: update condition to publish
+
 ## 6.7.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.7.0
+
+### Minor Changes
+
+- 8e5f8de: one more attempt to publish automaticly
+
 ## 6.6.11
 
 ### Patch Changes

@@ -168,7 +168,7 @@ jobs:
         run: |
           rm -f .npmrc
           echo //npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}} >> .npmrc
-          echo @needless-org:registry=https://npm.pkg.github.com/needless-org >> .npmrc
+          echo @needless-org:registry=https://npm.pkg.github.com >> .npmrc
         
       - name: Publish to GitHub
         run: npm publish

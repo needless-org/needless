@@ -35,25 +35,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Setup Git User
-        shell: bash
-        run: |
-          git config --global user.email "yarikrom05@gmail.com"
-          git config --global user.name "Yaroslav Romanenko"
-
       - name: Create Release
         uses: changesets/action@v1
         with:
           publish: pnpm release
           title: "ci(changesets): :package: version packages"
           commit: "ci(changesets): version packages"
-          setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - id: releaseOutputs
+      - name: Generate outputs
+        id: releaseOutputs
         if: steps.changesets.outputs.hasChangesets == 'false'
-        name: Generate outputs
         run: echo "releaseReady=true" >> $GITHUB_OUTPUT
 
   prepare:

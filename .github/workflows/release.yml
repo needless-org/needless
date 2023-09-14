@@ -162,6 +162,6 @@ jobs:
         run: echo registry=https://npm.pkg.github.com/needless-org >> .npmrc
         
       - name: Publish to GitHub
-        run: npm publish --access public
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

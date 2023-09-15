@@ -95,3 +95,14 @@ jobs:
           artifact-name: 'package-artifact'
           scope: '@needless-org'
           auth-token: ${{ secrets.GITHUB_TOKEN }}
+
+  back-merge:
+    name: Create Back merge PR
+    needs: [publish-npm, publish-github]
+    steps:
+      - name: Create Back merge PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/back-merge
+          title: 'chore(back-merge)::package: Merge release to main'

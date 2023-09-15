@@ -49,7 +49,7 @@ runs:
       id: changesets
       uses: changesets/action@v1
       with:
-        publish: ${{ inputs.package-manager }} release
+        publish: ${{ inputs.package-manager }} ${{ inputs.release-command }}
         title: ${{ inputs.release-pr-title }}
         commit: ${{ inputs.release-commit-message }}
       env:

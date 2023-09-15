@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.5
+
+### Patch Changes
+
+- 260dfea: fix release command usage
+
 ## 6.8.4
 
 ### Patch Changes

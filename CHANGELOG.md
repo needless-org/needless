@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.3
+
+### Patch Changes
+
+- f3f21b3: try npm
+
 ## 6.8.2
 
 ### Patch Changes

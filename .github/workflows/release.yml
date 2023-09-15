@@ -99,8 +99,10 @@ jobs:
   back-merge:
     name: Create Back merge PR
     needs: [publish-npm, publish-github]
-    uses: peter-evans/create-pull-request@v5
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      branch: chore/back-merge
-      title: '[Backmerge] Merge release to main'
+    steps:
+      - name: Create Back merge PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/back-merge
+          title: 'chore(back-merge)::package: Merge release to main'

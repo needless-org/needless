@@ -99,6 +99,7 @@ jobs:
   back-merge:
     name: Create Back merge PR
     needs: [publish-npm, publish-github]
+    runs-on: ubuntu-latest
     steps:
       - name: Create Back merge PR
         uses: peter-evans/create-pull-request@v5

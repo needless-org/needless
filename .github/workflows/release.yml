@@ -24,8 +24,6 @@ jobs:
         id: release
         with:
           node-version: 18
-          node-cache: 'pnpm'
-          package-manager: 'pnpm'
           release-pr-title: 'chore(release): :package: version update for packages'
           release-commit-message: 'chore(release): version update for packages'
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,9 +49,8 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/prepare-packages
         with:
-          node-version: 18
-          node-cache: 'pnpm'
-          package-manager: 'pnpm'
+          node-version: 18'
+          build-command: 'another:build:command'
 
   publish-npm:
     name: Publish to NPM Registry
@@ -71,8 +68,6 @@ jobs:
         uses: ./.github/actions/publish
         with:
           node-version: 18
-          node-cache: 'pnpm'
-          package-manager: 'pnpm'
           registry-url: 'https://registry.npmjs.org/'
           artifact-name: 'package-artifact'
           scope: '@needless-org'
@@ -95,8 +90,6 @@ jobs:
         uses: ./.github/actions/publish
         with:
           node-version: 18
-          node-cache: 'pnpm'
-          package-manager: 'pnpm'
           registry-url: https://npm.pkg.github.com/
           artifact-name: 'package-artifact'
           scope: '@needless-org'

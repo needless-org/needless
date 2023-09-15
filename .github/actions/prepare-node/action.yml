@@ -43,5 +43,6 @@ runs:
         run_install: false
 
     - name: Install dependencies
+      shell: bash
       if: ${{ inputs.install-dependencies == 'true' }}
       run: ${{ inputs.package-manager }} install

@@ -36,12 +36,15 @@ runs:
         registry-url: ${{ inputs.registry-url }}
 
     - name: Install dependencies
+      shell: bash
       run: ${{ inputs.package-manager }} install
     
     - name: Build
+      shell: bash
       run: ${{ inputs.package-manager }} build
           
     - name: Pack artifact
+      shell: bash
       run:  tar -czf /tmp/artifact.tar.gz .
 
     - name: Upload artifact

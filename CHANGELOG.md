@@ -1,5 +1,13 @@
 # @useless/needless-js
 
+## 6.8.10
+
+### Patch Changes
+
+- 24d0977: fix the backmerge
+- 9268f64: add backmerge after release
+- 7ac58d8: add missing runs on
+
 ## 6.8.9
 
 ### Patch Changes

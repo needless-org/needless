@@ -26,6 +26,13 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Install pnpm
+      if: ${{ inputs.package-manager == 'pnpm' }}
+      uses: pnpm/action-setup@v2.2.4
+      with:
+        version: 8
+        run_install: false
+
     - name: Setup Node version
       uses: actions/setup-node@v3
       with:
@@ -33,14 +40,6 @@ runs:
         cache: ${{ inputs.node-cache }}
         registry-url: ${{ inputs.registry-url }}
         scope: ${{ inputs.scope }}
-
-    - name: Install pnpm
-      if: ${{ inputs.package-manager == 'pnpm' }}
-      uses: pnpm/action-setup@v2
-      id: pnpm-install
-      with:
-        version: 8
-        run_install: false
 
     - name: Install dependencies
       shell: bash

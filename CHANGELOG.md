@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.9
+
+### Patch Changes
+
+- f771ef7: fix typo
+
 ## 6.8.8
 
 ### Patch Changes

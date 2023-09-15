@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.7
+
+### Patch Changes
+
+- 691d76e: fix publish command
+
 ## 6.8.6
 
 ### Patch Changes

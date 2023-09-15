@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.8
+
+### Patch Changes
+
+- a9e50f0: fix publish command
+
 ## 6.8.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.1
+
+### Patch Changes
+
+- e529116: add checkout step
+
 ## 6.8.0
 
 ### Minor Changes

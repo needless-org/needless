@@ -24,6 +24,7 @@ jobs:
         id: release
         with:
           node-version: 18
+          package-manager: 'yarn'
           release-pr-title: 'chore(release): :package: version update for packages'
           release-commit-message: 'chore(release): version update for packages'
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -51,6 +52,7 @@ jobs:
         uses: ./.github/actions/prepare-packages
         with:
           node-version: 18
+          package-manager: 'yarn'
           build-command: 'another:build:command'
 
   publish-npm:
@@ -69,6 +71,7 @@ jobs:
         uses: ./.github/actions/publish
         with:
           node-version: 18
+          package-manager: 'yarn'
           registry-url: 'https://registry.npmjs.org/'
           artifact-name: 'package-artifact'
           scope: '@needless-org'
@@ -91,19 +94,8 @@ jobs:
         uses: ./.github/actions/publish
         with:
           node-version: 18
+          package-manager: 'yarn'
           registry-url: https://npm.pkg.github.com/
           artifact-name: 'package-artifact'
           scope: '@needless-org'
           auth-token: ${{ secrets.GITHUB_TOKEN }}
-
-  back-merge:
-    name: Create Back merge PR
-    needs: [publish-npm, publish-github]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Back merge PR
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: chore/back-merge
-          title: 'chore(back-merge)::package: Merge release to main'

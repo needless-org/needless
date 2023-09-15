@@ -52,6 +52,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github-token }}
 
     - name: Generate outputs
+      shell: bash
       id: output-generator
       if: steps.changesets.outputs.published == 'true'
       run: echo "release-ready=true" >> $GITHUB_OUTPUT

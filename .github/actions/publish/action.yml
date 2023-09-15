@@ -48,9 +48,11 @@ runs:
         name: ${{ inputs.artifact-name }}
 
     - name: Unpack artifact
+      shell: bash
       run: tar xf artifact.tar.gz
 
     - name: Publish
+      shell: bash
       run: |
         if [ "${{ inputs.use-public-flag }}" = "true" ]; then
           npm publish --access public

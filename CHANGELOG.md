@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.4
+
+### Patch Changes
+
+- d5b698e: add option for release command
+
 ## 6.8.3
 
 ### Patch Changes

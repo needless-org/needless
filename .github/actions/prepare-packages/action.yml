@@ -1,0 +1,52 @@
+name: "Prepare packages"
+description: "Builds and packs the packages for release"
+inputs:
+  node-version:
+    description: 'The version of Node.js to use'
+    required: true
+  node-cache:
+    description: 'The cache key to use for caching Node.js'
+    required: false
+  package-manager:
+    description: 'The package manager to use'
+    required: false
+    default: 'npm'
+  registry-url:
+    description: 'The registry URL to use'
+    required: false
+  artifact-name:
+    description: 'The name of the artifact to upload'
+    required: false
+    default: 'package-artifact'
+  artifact-retention-days:
+    description: 'The number of days to retain the artifact'
+    required: false
+    default: 1
+
+runs:
+  using: composite
+  steps:
+    - name: Prepare node
+      uses: ./.github/actions/prepare-node
+      id: prepare-node
+      with:
+        node-version: ${{ inputs.node-version }}
+        node-cache: ${{ inputs.node-cache }}
+        package-manager: ${{ inputs.package-manager }}
+        registry-url: ${{ inputs.registry-url }}
+
+    - name: Install dependencies
+      run: ${{ inputs.package-manager }} install
+    
+    - name: Build
+      run: ${{ inputs.package-manager }} build
+          
+    - name: Pack artifact
+      run:  tar -czf /tmp/artifact.tar.gz .
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: /tmp/artifact.tar.gz
+        retention-days: ${{ inputs.artifact-retention-days }}

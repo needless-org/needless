@@ -19,35 +19,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Setup Node version
-        uses: actions/setup-node@v3
+      - name: Prepare node
+        uses: ./.github/actions/release
+        id: release
         with:
           node-version: 18
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Create Release
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm release
-          title: "ci(changesets): :package: version packages"
-          commit: "ci(changesets): version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          node-cache: 'pnpm'
+          package-manager: 'pnpm'
+          release-pr-title: 'chore(release): :package: version update for packages'
+          release-commit-message: 'chore(release): version update for packages'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate outputs
         id: releaseOutputs
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.release.outputs.release-ready == 'true'
         run: echo "releaseReady=true" >> $GITHUB_OUTPUT
 
   prepare:
@@ -63,34 +48,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Setup Node version
-        uses: actions/setup-node@v3
+      - name: Prepare
+        uses: ./.github/actions/prepare-packages
         with:
           node-version: 18
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
-
-      - name: Pack artifact
-        run:  tar -czf /tmp/artifact.tar.gz .
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: package-artifact
-          path: /tmp/artifact.tar.gz
-          retention-days: 1
+          node-cache: 'pnpm'
+          package-manager: 'pnpm'
 
   publish-npm:
     name: Publish to NPM Registry
@@ -101,37 +64,17 @@ jobs:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: Setup Node version
-        uses: actions/setup-node@v3
+      - name: Publish to NPM
+        uses: ./.github/actions/prepare-packages
         with:
           node-version: 18
-          registry-url: https://registry.npmjs.org/
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: package-artifact
-
-      - name: Unpack artifact
-        run: tar xf artifact.tar.gz
-
-      - name: Prepare registry
-        run: |
-          rm -f .npmrc
-          echo "@needless-org:registry=https://registry.npmjs.org/" > .npmrc
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
-
-      - name: Publish to NPM
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          node-cache: 'pnpm'
+          package-manager: 'pnpm'
+          registry-url: 'https://registry.npmjs.org/'
+          artifact-name: 'package-artifact'
+          scope: '@needless-org'
+          use-public-flag: true
+          auth-token: ${{ secrets.NPM_TOKEN }}
 
   publish-github:
     name: Publish to Github Registry
@@ -141,30 +84,14 @@ jobs:
     steps:
       - name: Cancel previous jobs
         uses: styfle/cancel-workflow-action@0.11.0
-
-      - name: Setup Node version
-        uses: actions/setup-node@v3
+      
+      - name: Publish to NPM
+        uses: ./.github/actions/prepare-packages
         with:
           node-version: 18
+          node-cache: 'pnpm'
+          package-manager: 'pnpm'
           registry-url: https://npm.pkg.github.com/
+          artifact-name: 'package-artifact'
           scope: '@needless-org'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
-        with:
-          version: 8
-          run_install: false
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: package-artifact
-
-      - name: Unpack artifact
-        run: tar xf artifact.tar.gz
-
-      - name: Publish to GitHub
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          auth-token: ${{ secrets.GITHUB_TOKEN }}

@@ -50,7 +50,7 @@ jobs:
       - name: Prepare
         uses: ./.github/actions/prepare-packages
         with:
-          node-version: 18'
+          node-version: 18
           build-command: 'another:build:command'
 
   publish-npm:

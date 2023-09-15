@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.6
+
+### Patch Changes
+
+- ea51758: fix release action
+
 ## 6.8.5
 
 ### Patch Changes

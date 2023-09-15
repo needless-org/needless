@@ -49,12 +49,7 @@ runs:
       id: changesets
       uses: changesets/action@v1
       with:
-        publish: |
-          if [ "${{ inputs.package-manager }}" = "npm" ]; then
-            npm run ${{ inputs.release-command }}
-          else
-            ${{ inputs.package-manager }} ${{ inputs.release-command }}
-          fi
+        publish: ${{ inputs.package-manager == 'npm' &&  'npm run ${{ inputs.release-command }}' || '${{ inputs.package-manager }} ${{ inputs.release-command }}' }}
         title: ${{ inputs.release-pr-title }}
         commit: ${{ inputs.release-commit-message }}
       env:

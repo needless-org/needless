@@ -16,7 +16,7 @@
     "dev": "vite",
     "another:build:command": "tsc && vite build",
     "preview": "vite preview",
-    "release": "changeset tag",
+    "changes:release": "changeset tag",
     "changes:add": "changeset add"
   },
   "devDependencies": {

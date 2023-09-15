@@ -25,6 +25,10 @@ inputs:
   github-token:
     description: 'The github token to use'
     required: true
+  release-command: 
+    description: 'The command to use to release'
+    required: false
+    default: 'release'
 outputs:
   release-ready:
     description: "Random number"

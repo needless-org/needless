@@ -27,6 +27,7 @@ jobs:
           release-pr-title: 'chore(release): :package: version update for packages'
           release-commit-message: 'chore(release): version update for packages'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          release-command: 'changes:release'
 
       - name: Generate outputs
         id: releaseOutputs

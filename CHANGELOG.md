@@ -1,5 +1,16 @@
 # @useless/needless-js
 
+## 6.8.0
+
+### Minor Changes
+
+- 51f35e3: make workflow modular and reusable
+
+### Patch Changes
+
+- 6997923: update setup node action
+- 3fc365c: use certain shell for custom actions
+
 ## 6.7.14
 
 ### Patch Changes

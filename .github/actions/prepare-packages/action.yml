@@ -22,6 +22,10 @@ inputs:
     description: 'The number of days to retain the artifact'
     required: false
     default: 1
+  build-command:
+    description: 'The command to use to build the package'
+    required: false
+    default: 'build'
 
 runs:
   using: composite
@@ -41,7 +45,12 @@ runs:
     
     - name: Build
       shell: bash
-      run: ${{ inputs.package-manager }} build
+      run: |
+        if [ "${{ inputs.package-manager }}" = "npm" ]; then
+          npm run ${{ inputs.build-command }}
+        else
+          ${{ inputs.package-manager }} ${{ inputs.build-command }}
+        fi
           
     - name: Pack artifact
       shell: bash

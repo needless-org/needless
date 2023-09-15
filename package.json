@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "another:build:command": "tsc && vite build",
     "preview": "vite preview",
     "release": "changeset tag",
     "changes:add": "changeset add"

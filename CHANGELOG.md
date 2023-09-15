@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.2
+
+### Patch Changes
+
+- 8254dfe: fix publish workflow
+
 ## 6.8.1
 
 ### Patch Changes

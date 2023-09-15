@@ -1,5 +1,11 @@
 # @useless/needless-js
 
+## 6.8.11
+
+### Patch Changes
+
+- ce342c5: first automatic patch version upgrade
+
 ## 6.8.10
 
 ### Patch Changes
